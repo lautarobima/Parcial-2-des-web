@@ -1,0 +1,495 @@
+:root{
+    --mainColor: #251a2e;
+    --headerColor: #1a0f18;
+    --asideColor: #1a0f18;
+    --windowColor: #1a0f18;
+    --higlight: #F2845C;
+    --higlightSelected: #fc9595;
+    --textColor: #adad99;
+    --textSecundary: #74665A;
+    --texHighlight: #ffffff;
+}
+
+
+html, body {
+
+    align-self: center;
+    justify-self: center;
+    margin: auto;
+
+    background-color: var(--mainColor);
+    margin: 0;
+    padding: 0; 
+    width: 100%;
+    height: 100%;
+    color: var(--textColor);
+
+    overflow: hidden;
+
+}
+
+
+
+div {
+
+    &>h2{margin-top: 0;}
+
+    &.MainDiv{
+
+        display: grid;
+        grid-template-areas:
+            'header header header header header'
+            'aside main main main main';
+        grid-template-rows: 7vh 1fr;
+        height: 100vh;
+    }
+    &.MainDiv2{
+
+        display: grid;
+        grid-template-areas:
+            'header header header header header'
+            'main main main main main';
+        grid-template-rows: 7vh 1fr;
+        height: 100vh;
+        align-items: center;
+    }
+
+    &.ContentHeading{
+
+        padding-right: 2%;
+        height: 70px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    &.FeaturedContent{
+
+        display: grid;
+        grid-template-areas:
+            'front title title'
+            'front images images'
+            'front images images'
+            'front images images'
+            'front price button';
+        align-items: center;
+        justify-content: left;
+
+        color: var(--textSecundary);
+
+        height: 300px;
+        background-color: var(--windowColor);
+        padding: 10px 10px 10px 20px;
+        margin-left: 20px;
+        gap: 20px;
+
+        box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
+
+        & > .FeaturedContentFront {
+            grid-area:front;
+            width: 216px;
+            height: auto;
+        }
+        & > .FeaturedContentImages{
+            display: flex;
+            grid-area:images;
+            gap: 30px;
+
+            align-self: center;
+
+            overflow-y: hidden;
+            overflow-x: auto;
+            scrollbar-color: var(--higlight) var(--windowColor);
+            scrollbar-width: thin;
+
+            & > img {
+                align-self: center;
+                width: 216px;
+                height: auto;
+                margin-bottom: 5px;
+            }
+        }
+        & > h1{grid-area:title; margin-top: 0; align-self: flex-start;}
+        & > p{grid-area:price; margin-bottom: 0; align-self: flex-end;}
+        & > button{grid-area:button; margin-bottom: 0; align-self: flex-end;}
+
+    }
+
+    &.ContentLibrary{
+        display: flex;
+        flex-wrap: nowrap;
+
+        overflow-y:hidden;
+        overflow-x: auto;
+        scrollbar-color: var(--higlight) var(--mainColor);
+
+        gap: 15px;
+    }
+
+    &.line{
+        background-color: var(--textColor);
+        margin-left: 10px;
+        height: 2px;
+        width: 100%;
+    }
+
+    &#Cart, &#cart-content{
+        display: flex;
+        flex-direction: column;
+        padding-right: 4%;
+        gap: 20px;
+        width: 13.5vw;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-color: var(--higlight) var(--mainColor);
+        scrollbar-width: thin;
+
+        border-bottom: 2px solid var(--mainColor);
+        border-top: 2px solid var(--mainColor);
+
+        text-align: center;
+    }
+
+    &.CartItem{
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: right;
+
+
+        height: 200px;
+        background-color: var(--mainColor);
+        padding: 5px 5px 5px 10px;
+        gap: 0.8vw;
+
+        box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.3);
+
+        & > img{
+            align-self: center;
+            width: 108px;
+            height: auto;
+            margin-right: 5px;
+        }
+        & > button{width:20px; margin: 0;}
+        & > button:hover{width: 24px;}
+    }
+
+
+    &#PriceDiv {
+        & > p{text-align: center;}
+    }
+
+    &.AboutUs {display: flex; align-items: center; justify-content: center; justify-self: center; align-self: center; gap: 25px; margin-top: 30px; margin-bottom: 30px; flex-wrap: wrap;}
+        
+
+}
+
+
+header {
+
+    grid-area:header;
+
+    background-color: var(--headerColor);
+    height: 7vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0px 10px;
+
+    & > div.HeaderContainer {
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+aside {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 3vh 0;
+    width: 14vw;
+    height: 87vh;
+
+    grid-area:aside;
+
+    background-color: var(--asideColor);
+
+    & > h2 {
+        margin-top: 0;
+        margin-bottom: 3px;
+    }
+
+    & > div.AsideContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;;
+    }
+    
+}
+
+
+main {
+
+    padding-left: 2%;
+
+    grid-area:main;
+
+    background-color: var(--mainColor);
+    height: 93vh;
+
+    overflow-y:auto;
+    overflow-x: hidden;
+    scrollbar-color: var(--higlight) var(--windowColor);
+
+    &.AboutUsMain{padding-left: 0; align-items: center; justify-content: center; justify-self: center; align-self: center;}
+
+}
+
+
+button {
+
+    width: 80px;
+    background-color: var(--headerColor);
+    color: var(--higlight);
+    border: 2px solid var(--higlight);
+    
+    margin: 0 10px 0 10px;
+
+    padding: 0;
+    font: inherit;  
+    cursor: pointer;
+    outline: none; 
+    appearance: none;
+
+    box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-out;
+    
+
+    &.game-add-button {
+        width: 130px;
+        background-color: var(--higlight);
+        color: var(--texHighlight);
+        
+        margin-left: 10px;
+
+        border: none;
+        padding: 0;
+        font: inherit;  
+        cursor: pointer;
+        outline: none; 
+        appearance: none;
+
+        transition: all 0.3s ease-out;
+    }
+    &.game-add-button:hover {background-color: var(--higlightSelected); color: var(--texHighlight);}
+
+    &.showMore {
+        width: 130px;
+        background-color: var(--mainColor);
+        color: var(--higlight);
+        border: 2px solid var(--higlight);
+        
+        margin-left: 10px;
+
+        padding: 0;
+        font: inherit;  
+        cursor: pointer;
+        outline: none; 
+        appearance: none;
+
+        box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease-out;
+    }
+    &.showMore:hover {color: var(--higlightSelected); background-color: var(--windowColor); width: 134px; padding: 1px 2px 1px 2px; border: 3px solid var(--higlightSelected);}
+
+}
+button:hover {color: var(--higlightSelected); background-color: var(--windowColor); width: 90px; border: 3px solid var(--higlightSelected);}
+
+a {
+
+    & > button {
+        width: 130px;
+        background-color: var(--headerColor);
+        color: var(--higlight);
+        border: 2px solid var(--higlight);
+        
+        margin: 0 10px 0 10px;
+
+        padding: 0;
+        font: inherit;  
+        cursor: pointer;
+        outline: none; 
+        appearance: none;
+
+        box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease-out;
+    }
+    & > button:hover {color: var(--higlightSelected); background-color: var(--windowColor); width: 134px; border: 3px solid var(--higlightSelected);}
+
+}
+
+
+
+
+#offers, #new, #for-you {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+
+/* Estilos para la caja del juego en pantalla */
+.game-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    
+    background-color: var(--windowColor);
+    color: var(--textSecundary);
+    width: 240px;
+    min-width: 220px;
+    padding: 5px;
+    margin: 10px 0;
+
+    transition: all 0.3s ease-out;
+
+    box-shadow: 3px 3px 6px 1px rgba(0, 0, 0, 0.3);
+}
+.game-main:hover {width: 260px; min-width: 240px;}
+
+.game-main > img {
+    width: 90%;
+}
+.game-main > .game-title {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.game-main > .game-price {
+    font-size: 2em;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.game-main > .game-add-button {
+    margin: 0 auto;
+    width: 100%;
+    padding: 5px;
+}
+
+
+#message {
+    position: fixed;
+    bottom: 20px;   /* margen desde abajo */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    color: white;
+    background-color: #F2845C;
+}
+
+
+
+@media only screen and (max-width: 1350px) {
+
+    div{
+
+        &.MainDiv{
+            display: flex;
+            flex-direction: column;
+        }
+
+        &.FeaturedContent{
+
+            display: grid;
+            grid-template-areas:
+                'title'
+                'front'
+                'price'
+                'button';
+            align-items: center;
+            justify-content: center;
+
+            color: var(--textSecundary);
+
+            height: 500px;
+            background-color: var(--windowColor);
+            padding: 10px 10px 10px 20px;
+            margin: 0 10vw;
+            gap: 20px;
+
+            box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
+
+            & > .FeaturedContentFront {
+                grid-area:front;
+                width: 216px;
+                height: auto;
+            }
+            & > .FeaturedContentImages{
+                display: none;
+            }
+            & > h1{grid-area:title; margin-top: 0; align-self: center; text-align: center;}
+            & > p{grid-area:price; margin-bottom: 0; align-self: center; text-align: center;}
+            & > button{grid-area:button; margin-bottom: 0; align-self: center; text-align: center; justify-self: center;}
+
+        }
+
+        &#Cart, &#cart-content{
+            flex-direction: row;
+            padding-bottom: 4%;
+            gap: 20px;
+            height: 120px;
+            min-width: 50vw;
+
+            overflow-y: hidden;
+            overflow-x: auto;
+
+            border-left: 2px solid var(--mainColor);
+            border-right: 2px solid var(--mainColor);
+
+        }
+
+        &.CartItem{
+            flex-direction: column-reverse;
+            justify-content:start;
+            align-items: center;
+
+            height: 120px;
+            background-color: var(--mainColor);
+            padding: 5px 5px 5px 5px;
+            gap: 0.2vw;
+
+
+            & > img{
+                align-self: center;
+                width: 54px;
+                margin-right: 0;
+            }
+            & > button{width:20px; margin: 0;}
+            & > button:hover{width: 24px;}
+        }
+
+    }
+
+    aside{
+        flex-direction: row;
+        height: 18vh;
+        width: 100vw;
+    }
+
+    a{
+        & > button {width: 100px;}
+        & > button:hover {width: 105px;}
+    }
+
+    
+}    
+

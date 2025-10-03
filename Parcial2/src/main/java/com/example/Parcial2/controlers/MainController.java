@@ -1,15 +1,15 @@
 package com.example.Parcial2.controlers;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 
-@RestController
+@Controller
 
 public class MainController {
 
     @GetMapping("/")
-    public String StartPage() {
-        return "Index";
+    public String StartPage(Model model) {
+        return "index";
     }
-    
 }
