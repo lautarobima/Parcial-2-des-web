@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<!-- 
+To do list:
+1 X)CSS - main structure of the main page and the other 5 pages with HTML and basic CSS
+2 X)CSS - have the final style on CSS
+3 X)CSS - make the media Quearies for cellphone, tablet, etc.
+4 X)java - have the Item object on javascript and be able to open the page of the object
+5 X)CSS - have a pop up when hovering over an item
+6 X)java - be able to filter the items throught tags and price
+7 X)java - have a functional whislist and carrito
+8 X)java - hacer que aparescan chimbadas cuando se busca en el buscador
+9 X)java,CSS - toca poner descuento
+-->
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina principal</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="./scripts/hub.js" defer></script>
+</head>
+
+
+<body>
+    <!--
+    <div id="message">
+        <p>(Game) added to cart!</p>
+    </div>-->
+    <div class="MainDiv">
+
+
+        <header>
+
+            <div class="HeaderContainer">
+                <!-- Imagen temporal de la imagen principal de la imagen (porque no se que era lo que estan planeando con este) -->
+                <a href="index.html"><img src="https://storage.needpix.com/rsynced_images/video-game-controller-147039_1280.png" alt="logo" width="35"></a>
+            </div>
+
+            <div class="HeaderContainer">
+                <a href="pages/aboutUs.html"><button>About Us</button></a>
+            </div>
+        </header>
+
+
+        <aside>
+
+            <div>
+                <h2>Cart</h2>
+            </div>
+
+            <div id="cart-content">
+
+            </div>
+                <!--
+                <div class="CartItem">
+                    <img src="images/games/ps5/silenthill2.jpg">
+                    <p>50$</p>
+                    <button>X</button>
+                </div>
+                </div>-->
+
+            <div id="PriceDiv">
+                <p id="total-price">0$</p>
+                <button>Buy</button>
+            </div>
+            
+        </aside>
+
+
+        <main>
+
+            <div class="ContentHeading"><h1>Featured</h1></div>
+            <div class="FeaturedContent">
+
+                <img class="FeaturedContentFront" src="images/games/ps5/expedition33/front.jpg">
+                <h1>Expedition 33</h1>
+                <div class="FeaturedContentImages">
+                   <img src="images/games/ps5/expedition33/0.jpg"> 
+                   <img src="images/games/ps5/expedition33/1.jpg"> 
+                   <img src="images/games/ps5/expedition33/2.jpg"> 
+                   <img src="images/games/ps5/expedition33/3.jpg"> 
+                   <img src="images/games/ps5/expedition33/4.jpg"> 
+                   <img src="images/games/ps5/expedition33/5.jpg"> 
+                </div>
+                <p>50$</p>
+                <button class="game-add-button" onclick="addFeatured()">Add to cart</button>
+
+            </div>
+
+            <div class="ContentHeading"><h1>Offers</h1><button class="showMore" id="show-more-offers">show more</button></div>
+            <div class="line"></div>
+            <div class="ContentLibrary" id="offers">
+                <!--
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>-->
+                <!-- Temporal -->
+                 <!-- Quitar solo en testeo (eliminar despues) 
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>
+                <div class="game-main">
+                    <h3 class="game-title">Expedition 33</h3>
+                    <p class="game-date">24 de abril de 2025</p>
+                    <img src="./images/games/ps5/expedition33.jpg" class="game-boxart">
+                    <p class="game-price">$50</p>
+                    <button class="game-add-button">Add to cart</button>
+                </div>-->
+            </div>
+
+            <div class="ContentHeading"><h1>New Releases</h1><button class="showMore">show more</button></div>
+            <div class="line"></div>
+            <div class="ContentLibrary" id="new"></div>
+
+            <div class="ContentHeading"><h1>For you</h1></div>
+            <div class="line"></div>
+            <!-- Anotacion, no tengo ni la mas remota idea como comenzar a hacer una lista personalizada para el usuario, tal vez por generos buscados? Pero advierto que con cualquier opcion, estara muy dificil -->
+            <div class="ContentLibrary" id="for-you"></div>
+            
+        </main>
+
+
+    </div>
+
+</body>
+
+
+</html>
