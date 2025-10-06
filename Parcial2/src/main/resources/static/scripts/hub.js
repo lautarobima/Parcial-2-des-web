@@ -28,6 +28,7 @@ class Game {
 // Esto va a ser epicamente ineficiente, pero por limitantes de mis habilidades y tiempo tocara de esta forma
 // Esta lista contendra toda la libreria de nuestra tienda digital
 // (Fueron los primeros juegos en Amazon)
+/*
 const library = [
     new Game(1, "Expedition 33", "RPG", "Sandfall Interactive", "./images/games/ps5/expedition33/front.jpg", new Date(2025, 3, 24), 50, 0.10),
     new Game(2, "College Football 26", "Sports", "EA Sports", "./images/games/ps5/collegefooball.jpg", new Date(2025, 6, 10), 70, 0.10),
@@ -59,19 +60,36 @@ const library = [
     new Game(28, "Warhammer 40,000: Space Marine 2", "Action", "Saber Interactive", "./images/games/ps5/space marine 2.jpeg", new Date(2025, 8, 9), 70, 0.10),
     new Game(29, "Metal Gear Solid V: The Phantom Pain", "Action-Adventure", "Kojima Productions", "./images/games/ps5/Metal_Gear_Solid_V_The_Phantom_Pain_cover.png", new Date(2015, 8, 1), 30, 0.50),
     new Game(30, "UnicornOverlord", "Strategy", "Konami", "./images/games/ps5/UnicornOverlord.avif", new Date(2024, 9, 8), 60, 0.4)
+];*/
 
-];
+const gamesAPI = async () => {
+    const url = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj9cqHuHqL_3wbzLdTNy3DD4S1D6k6LsPafMlxoFLAz1GSZgC732oHEiiQO0PAoiP8Whgvnrp47K-tluffISpIanl7K3QW4icjF13ZWs6FeZyKefeuw1yF1PoC0a51JHx7LjLCxXRq7YiTWyqFP5HIPqozuWWijw-VZcf1UJfI47nIQXi5x7qnJ-k4q1xaoGV4VaMlZ0PSXM3G7r52I6MNu4dl5txFQYJqN10cBP5o09CNMJkEOAlvQ6I_Ci5slKYS0fqhGJkMUq8-kD0jKOTnEoEw5lwC5BUT8L8yN&lib=McFi3SXUUsd-8HKxxp1y27YmeaMY9rJUD"
+    // Despues hacer una barra de carga
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log(data);
+        return data["data"];
+    } catch (error) {
+        console.error(`Error in fetching data: ${error}`);
+    }
+}
+
 const cartItems = [];
 
 // Cambiar esto despues al resto de las cosas
-const setGamesDisplay = (arr = library, docElement, buttonAddID) => {
+const setGamesDisplay = (arr, docElement, buttonAddID) => {
     docElement.innerHTML += arr.map(
         // Toca cambiar esto para que aguante lo del cambio en ofertas
         ({ id, title, release, developer, boxArt, price }) => {
             return `
                 <div class="game-main" id="game-window-${id}">
                     <h3 class="game-title">${title}</h3>
-                    <p class="game-date">${getDateString(release)}</p>
+                    <p class="game-date">${release}</p>
                     <img src="${boxArt}">
                     <p class="game-price">$${price}</p>
                     <button class="game-add-button ${buttonAddID}" id=${id}>Add to cart</button>
@@ -183,11 +201,11 @@ const getGameNameFromID = (id) => {
     const game = getGameFromID(id);
     return game.title;
 }
-
+/*
 const getDateString = (date) => {
     // Se puede cambiar a fecha menos formal, pero esto funciona perfectamente
     return `${date.getDay()} / ${date.getMonth() + 1} / ${date.getFullYear()}`;
-};
+};*/
 
 
 
@@ -196,7 +214,15 @@ function addFeatured(){
     addToCartDocument(1);
 }
 
+async function gamesInCatalog() {
+    console.log("Hola como vas")
+    const library = await gamesAPI();
+    console.log(library);
 
-setGamesDisplay(library, offers, "button-offers-id");
-setGamesDisplay(library, newReleases, "button-newreleases-id");
-setGamesDisplay(library, forYou, "button-foryou-id");
+    setGamesDisplay(library, offers, "button-offers-id");
+    setGamesDisplay(library, newReleases, "button-newreleases-id");
+    setGamesDisplay(library, forYou, "button-foryou-id");
+}
+
+console.log("Abrir el API...")
+gamesInCatalog();
