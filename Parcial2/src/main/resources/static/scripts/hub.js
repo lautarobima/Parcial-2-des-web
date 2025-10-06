@@ -2,6 +2,8 @@ const offers = document.getElementById("offers");
 const newReleases = document.getElementById("new");
 const forYou = document.getElementById("for-you");
 
+//const featured = document.getElementById("FeaturedContent");
+
 const cart = document.getElementById("Cart");
 const cartContent = document.getElementById("cart-content");
 const priceDiv = document.getElementById("PriceDiv");
@@ -101,18 +103,37 @@ const setGamesDisplay = (arr, docElement, buttonAddID) => {
         button.addEventListener("click", () => addToCartGame(button.id));
     });
 }
+// Codigo para actualizar el featured
+// Usar si se sabe lo que se esta haciendo
+/*
+const setFeaturedGame = async (gameIndex, extraImages) => {
+    const featuredGame = gamesAPI();
+    featuredGame = featuredGame[gameIndex];
 
-const addToCartGame = (id) => {
+    featured.innerHTML = ```
+        <img class="FeaturedContentFront" src="images/games/ps5/expedition33/front.jpg">
+        <h1>${featuredGame.title}</h1>
+        <div class="FeaturedContentImages">
+            ${extraImages.map((image) => {
+                return `<img src="${image}">`;
+            }).join("")}
+        </div>
+        <p>${featuredGame.price}</p>
+        <button class="game-add-button" onclick="addFeatured()">Add to cart</button>
+    ```
+}*/
+
+const addToCartGame = async (id) => {
     // Aviso que juego fue añadido al carrito
     console.log(`Game #${id} added to cart`);
     id = parseInt(id);
 
-    const gameName = getGameNameFromID(id);
+    const gameName = await getGameNameFromID(id);
     showMessage(`${gameName} added to cart!`);
 
     addToCartDocument(id);
 
-    cartItems.push(getGameFromID(id));
+    cartItems.push(await getGameFromID(id));
 
     // Añade informacion al URl
     const url = new URL(window.location);
@@ -123,8 +144,8 @@ const addToCartGame = (id) => {
     updatePriceElement();
 };
 
-const addToCartDocument = (id) => {
-    const game = getGameFromID(id);
+const addToCartDocument = async (id) => {
+    const game = await getGameFromID(id);
     //const gameCartItem = document.createElement("div");
     const numberItemsCart = document.querySelectorAll(".CartItem").length;
     cartContent.innerHTML += `
@@ -191,14 +212,15 @@ const showMessage = (message) => {
                     <button>X</button>
                 </div> */
 
-const getGameFromID = (id) => {
+const getGameFromID = async (id) => {
+    const library = await gamesAPI();
     const game = library.find(game => game.id === id);
     return game
 }
 // Una version mas pequeña de la anterior funcion si por alguan razon solo es necesario el nombre del juego
-const getGameNameFromID = (id) => {
+const getGameNameFromID = async (id) => {
     //id = parseInt(id);
-    const game = getGameFromID(id);
+    const game = await getGameFromID(id);
     return game.title;
 }
 /*
