@@ -7,6 +7,7 @@ const forYou = document.getElementById("for-you");
 const cart = document.getElementById("Cart");
 const cartContent = document.getElementById("cart-content");
 const priceDiv = document.getElementById("PriceDiv");
+const formWindow = document.getElementById("formWindow");
 
 const body = document.getElementsByTagName("body");
 
@@ -65,7 +66,7 @@ const library = [
 ];*/
 
 const gamesAPI = async () => {
-    const url = "https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLj9cqHuHqL_3wbzLdTNy3DD4S1D6k6LsPafMlxoFLAz1GSZgC732oHEiiQO0PAoiP8Whgvnrp47K-tluffISpIanl7K3QW4icjF13ZWs6FeZyKefeuw1yF1PoC0a51JHx7LjLCxXRq7YiTWyqFP5HIPqozuWWijw-VZcf1UJfI47nIQXi5x7qnJ-k4q1xaoGV4VaMlZ0PSXM3G7r52I6MNu4dl5txFQYJqN10cBP5o09CNMJkEOAlvQ6I_Ci5slKYS0fqhGJkMUq8-kD0jKOTnEoEw5lwC5BUT8L8yN&lib=McFi3SXUUsd-8HKxxp1y27YmeaMY9rJUD"
+    const url = "https://script.google.com/macros/s/AKfycbw_neyogG2eRwiYUPOBHWuFunoc8WwE1Fc8cwPKXJ_s5UwVt_ECEEEKRQJyziK833bL/exec"
     // Despues hacer una barra de carga
     try {
         const response = await fetch(url);
@@ -136,10 +137,12 @@ const addToCartGame = async (id) => {
     cartItems.push(await getGameFromID(id));
 
     // Añade informacion al URl
+    /*
     const url = new URL(window.location);
     const amountItemsInCart = document.querySelectorAll(".CartItem").length;
     url.searchParams.set(`game-${amountItemsInCart}`, gameName);
     window.history.pushState({}, "", url);
+    */
 
     updatePriceElement();
 };
@@ -173,7 +176,9 @@ const getPricePurchase = () => {
 const updatePriceElement = () => {
     const totalPrice = getPricePurchase();
     const priceElement = priceDiv.querySelector("#total-price");
+    const priceElementWindow = formWindow.querySelector("#total-price-window");
     priceElement.innerHTML = `${totalPrice}$`;
+    priceElementWindow.innerHTML = `precio de la compra: ${totalPrice}$`;
 };
 
 const deleteItemFromCart = (numberItemCart) => {
@@ -185,10 +190,12 @@ const deleteItemFromCart = (numberItemCart) => {
     cartItems.splice(indexGameDeleted, 1);
 
     // Eliminar link
+    /*
     const url = new URL(window.location);
     console.log(numberItemCart + 1);
     url.searchParams.delete(`game-${numberItemCart + 1}`);
     window.history.pushState({}, "", url);
+    */
 
     updatePriceElement();
 };
@@ -245,6 +252,24 @@ async function gamesInCatalog() {
     setGamesDisplay(library, newReleases, "button-newreleases-id");
     setGamesDisplay(library, forYou, "button-foryou-id");
 }
+
+
+
+function selectBuyWindow(){
+    let window = document.getElementById("buyWindow");
+
+    if (window.classList.contains('hidden')) {
+        window.classList.remove('hidden');
+        window.classList.add('shown');
+    }
+    else{
+        window.classList.remove('shown');
+        window.classList.add('hidden');
+    }
+
+    console.log(cartItems);
+}
+
 
 console.log("Abrir el API...")
 gamesInCatalog();

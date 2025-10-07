@@ -184,8 +184,50 @@ div {
 
     &.AboutUs {display: flex; align-items: center; justify-content: center; justify-self: center; align-self: center; gap: 25px; margin-top: 30px; margin-bottom: 30px; flex-wrap: wrap;}
         
+    &#buyWindow{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%; 
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    &.hidden{display: none; background-color: rgba(0, 0, 0, 0);}
+    &.shown{display: flex; background-color: rgba(0, 0, 0, 0.7); animation: showing 0.3s ease-out;}
 
 }
+
+@keyframes showing{
+    from {background-color: rgba(0, 0, 0, 0);}
+    to {background-color: rgba(0, 0, 0, 0.7);}
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    width: 350px;
+    height: 400px; 
+    background-color: var(--mainColor);
+    border: 5px solid var(--windowColor);
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 2px rgba(0, 0, 0, 0.3);
+    padding: 6px;
+    & > button{align-self: center;}
+    & > input{
+        background-color: var(--asideColor);
+        border: 0 solid var(--higlight);
+        border-bottom: 2px solid var(--higlight);
+        color: var(--textSecundary);
+    }
+}
+
+
+
+
+
 
 
 header {
@@ -493,3 +535,12 @@ a {
     
 }    
 
+
+
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
