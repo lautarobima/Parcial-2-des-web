@@ -195,13 +195,13 @@ div {
         z-index: 1000;
     }
     &.hidden{display: none; background-color: rgba(0, 0, 0, 0);}
-    &.shown{display: flex; background-color: rgba(0, 0, 0, 0.7); animation: showing 0.3s ease-out;}
+    &.shown{display: flex; background-color: rgba(0, 0, 0, 0.8); animation: showing 0.3s ease-out;}
 
 }
 
 @keyframes showing{
     from {background-color: rgba(0, 0, 0, 0);}
-    to {background-color: rgba(0, 0, 0, 0.7);}
+    to {background-color: rgba(0, 0, 0, 0.8);}
 }
 
 form{

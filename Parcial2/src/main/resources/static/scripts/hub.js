@@ -28,6 +28,17 @@ class Game {
     }
 }
 
+// para ponerlo en el json/base de datos
+class Product {
+    constructor(id, title){
+        this.id = id;
+        this.title = title;
+        this.cuantity = 1;
+    }
+}
+
+var totPrice = 0;
+
 // Esto va a ser epicamente ineficiente, pero por limitantes de mis habilidades y tiempo tocara de esta forma
 // Esta lista contendra toda la libreria de nuestra tienda digital
 // (Fueron los primeros juegos en Amazon)
@@ -66,7 +77,7 @@ const library = [
 ];*/
 
 const gamesAPI = async () => {
-    const url = "https://script.google.com/macros/s/AKfycbw_neyogG2eRwiYUPOBHWuFunoc8WwE1Fc8cwPKXJ_s5UwVt_ECEEEKRQJyziK833bL/exec"
+    const url = "https://script.google.com/macros/s/AKfycbxiZpaC7k1MpL9W5XxCDXadnxGDZ7s4OkNkWPVfm8A5dxbaZA0gqvc8Cqqr-q8gTeF_wA/exec"
     // Despues hacer una barra de carga
     try {
         const response = await fetch(url);
@@ -170,6 +181,8 @@ const getPricePurchase = () => {
     cartItems.forEach(item => {
         price += item.price;
     });
+    // asda
+    totPrice = price
     return price;
 };
 
@@ -258,6 +271,9 @@ async function gamesInCatalog() {
 function selectBuyWindow(){
     let window = document.getElementById("buyWindow");
 
+    if (cartItems.length == 0) 
+        return alert("No hay productos seleccionados!!!");
+
     if (window.classList.contains('hidden')) {
         window.classList.remove('hidden');
         window.classList.add('shown');
@@ -268,6 +284,41 @@ function selectBuyWindow(){
     }
 
     console.log(cartItems);
+}
+
+
+async function BuyRequest(){
+    // getting values from the form
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const address = document.getElementById("address").value;
+
+    // get items on cart, their id, name, and cuantity
+    console.log(cartItems);
+    const prodMap = new Map();
+    for (var i = 0; i<cartItems.length; i++) {
+        const item = cartItems[i];
+        console.log(item);
+        if(!prodMap.has(item.id))
+            prodMap.set(item.id, new Product(item.id, item.title));
+        else
+            prodMap.get(item.id).cuantity += 1;
+    }
+    prodList = Array.from(prodMap);
+    console.log(prodList);
+
+    // post request
+    const request = new Request("https://script.google.com/macros/s/AKfycbxiZpaC7k1MpL9W5XxCDXadnxGDZ7s4OkNkWPVfm8A5dxbaZA0gqvc8Cqqr-q8gTeF_wA/exec", {
+        method: "POST",
+        mode: 'no-cors',
+        body: JSON.stringify({name : name, phone: phone, address : address, price: totPrice, products: prodList})
+    });
+    // fetch of the request
+    try {
+        const response = await fetch(request);
+    } catch (error) {
+        console.error("Error:", error);
+    }
 }
 
 

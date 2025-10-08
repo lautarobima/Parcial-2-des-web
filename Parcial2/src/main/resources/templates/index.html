@@ -31,13 +31,13 @@ To do list:
     </div>-->
     <div id="buyWindow" class="hidden">
         <button onclick="selectBuyWindow()">atrás</button>
-        <form id="formWindow">
+        <form id="formWindow" onsubmit="return BuyRequest();">
             <label for="name">Nombre:</label><br>
-            <input type="text" id="name" ><br><br>
+            <input type="text" id="name" required><br><br>
             <label for="phone">Teléfono:</label><br>
-            <input type="number" id="phone" ><br><br>
-            <label for="direction">Dirección:</label><br>
-            <input type="text" id="direction"><br>
+            <input type="tel" id="phone" required><br><br>
+            <label for="address">Dirección:</label><br>
+            <input type="text" id="address" required><br>
             <p id="total-price-window">precio de la compra: 0$</p>
             <button>submit</button>
         </form>
