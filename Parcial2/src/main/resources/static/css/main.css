@@ -541,6 +541,22 @@ a {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    --c:#adad99;
+    width: fit-content;
+    font-weight: bold;
+    font-size: 30px;
+    color: #adad9900;
+    overflow: hidden;
+    text-shadow: 0 0 var(--c),11ch 0 var(--c);
+    animation: l6 2s infinite linear;
+    }
+    .loader:before {
+    content:"Loading..."
+}
+@keyframes l6 {to{text-shadow:-11ch 0 var(--c),0ch 0 var(--c)}}
